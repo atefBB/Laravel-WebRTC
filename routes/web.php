@@ -19,18 +19,28 @@ Route::get('/', function () {
 Route::post('save_img', function() {
   $captured_image = Request::get('data');
   $d = new Carbon\Carbon();
+  Carbon\Carbon::setToStringFormat('j_F_Y_g-i-s-a');
   $img_save_path = storage_path()
                     .'/app/imgs/img_'
-                    .$d->toIso8601String()
+                    .$d->now()
                     .'.png';
-  $decoded_img = base64_decode(
+  //dd($img_save_path);
+  /*$decoded_img = base64_decode(
                   preg_replace(
                       '#^data:image/\w+;base64,#i',
                       '',
-                      $captured_image));
+                      $captured_image));*/
+  $captured_image = str_replace(
+                      'data:image/png;base64,',
+                      '',
+                      $captured_image);
+  $captured_image = str_replace(
+                      ' ',
+                      '+',
+                      $captured_image);
   dd(file_put_contents(
         $img_save_path,
-        $decoded_img));
+        base64_decode($captured_image)));
 
       /*if (
           preg_match(

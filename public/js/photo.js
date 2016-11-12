@@ -65,7 +65,7 @@
      }
 
      httpRequest.onreadystatechange = function() {
-        console.log(httpRequest);
+        console.log(httpRequest.responseText);
      };
 
      httpRequest.open(method, url, true);
@@ -81,6 +81,10 @@
         .send('data='+data);
      };
   // @todo: save/send the captured Image.
+  // save the captured image after seconds.
+  setTimout(function() {
+    
+  });
   document.getElementById('capture')
           .addEventListener(
               'click',
