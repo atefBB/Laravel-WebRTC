@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Take Photos WebRTC</title>
 
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 </head>
 <body>
   <div class="booth">
@@ -18,8 +18,8 @@
     <canvas id="canvas"
             width="400"
             height="300"></canvas>
-    <img id="photo"/>        
+    <img id="photo"/>
   </div>
-  <script src="js/photo.js"></script>
+  <script src="{{ asset('js/photo.js') }}"></script>
 </body>
 </html>
