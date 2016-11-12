@@ -11,10 +11,10 @@
     <video id="video"
             width="400"
             height="300"></video>
-    <a href="#" id="capture"
+    <!--a href="#" id="capture"
         class="booth-capture-btn">
       Take photo
-    </a>
+    </a-->
     <canvas id="canvas"
             width="400"
             height="300"></canvas>

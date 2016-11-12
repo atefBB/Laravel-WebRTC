@@ -92,6 +92,7 @@
       canvas
         .toDataURL('image/png'));
   }, 60000);
+  // attach an action to a button || for testing stuff
   document.getElementById('capture')
           .addEventListener(
               'click',
