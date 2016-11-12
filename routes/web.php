@@ -19,10 +19,20 @@ Route::get('/', function () {
 Route::post('save_img', function() {
   $captured_image = Request::get('data');
   $d = new Carbon\Carbon();
-  //$img_save_path = storage_path().'/app/imgs/img_'.$d->toDateString().'.png';
-  //dd(file_put_contents($img_save_path, $captured_image));
+  $img_save_path = storage_path()
+                    .'/app/imgs/img_'
+                    .$d->toIso8601String()
+                    .'.png';
+  $decoded_img = base64_decode(
+                  preg_replace(
+                      '#^data:image/\w+;base64,#i',
+                      '',
+                      $captured_image));
+  dd(file_put_contents(
+        $img_save_path,
+        $decoded_img));
 
-      if (
+      /*if (
           preg_match(
               '/data:image\/(gif|jpeg|png);base64,(.*)/i',
               $captured_image,
@@ -41,9 +51,9 @@ Route::post('save_img', function() {
               echo json_encode(
                       array('filename' => '/app/imgs/' . $filename));
           } else {
-              /*throw new Exception*/echo ('Could not save the file.');
+              throw new Exceptionecho ('Could not save the file.');
           }
       } else {
-          /*throw new Exception*/echo ('Invalid data URL.');
-      }
+          throw new Exceptionecho ('Invalid data URL.');
+      }*/
 });
