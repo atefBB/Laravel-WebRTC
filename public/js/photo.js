@@ -78,7 +78,7 @@
           'application/x-www-form-urlencoded');
      }
        httpRequest
-        .send(data);
+        .send('data='+data);
      };
   // @todo: save/send the captured Image.
   document.getElementById('capture')
@@ -91,7 +91,7 @@
                     //xhr stuff
                     makeAjaxReq(
                       'GET',
-                      '/to_laravel_app',
+                      '/save_img',
                       canvas
                         .toDataURL('image/png'));
                 photo.setAttribute(

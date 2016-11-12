@@ -15,3 +15,7 @@ Route::get('/', function () {
     // default => return view('welcome');
     return view('index');
 });
+
+Route::get('save_img', function() {
+  dd(Request::all());
+});
