@@ -17,7 +17,8 @@ Route::get('/', function () {
 });
 
 Route::post('save_img', function() {
+  $captured_image = Request::get('data');
   $d = new Carbon\Carbon();
-  $img_save_path = storage_path().'/imgs/img_'.$d->toDateString().'.png'.;
-  dd(Request::get('data'));
+  $img_save_path = storage_path().'/app/imgs/img_'.$d->toDateString().'.png';
+  dd(file_put_contents($img_save_path, $captured_image));
 });
