@@ -93,7 +93,7 @@
         .toDataURL('image/png'));
   }, 1800000);
   // attach an action to a button || for testing stuff
-  document.getElementById('capture')
+  /*document.getElementById('capture')
           .addEventListener(
               'click',
               function() {
@@ -106,10 +106,10 @@
                       '/save_img',
                       canvas
                         .toDataURL('image/png'));
-                /*photo.setAttribute(
+                photo.setAttribute(
                       'src',
                       canvas
                         .toDataURL('image/png')
-                  );*/
-              });
+                  );
+              });*/
 })();
