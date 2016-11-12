@@ -81,10 +81,17 @@
         .send('data='+data);
      };
   // @todo: save/send the captured Image.
-  // save the captured image after seconds.
-  setTimout(function() {
-    
-  });
+  // save the captured image after 1200000 seconds (=20 minutes).
+  setInterval(function() {
+    context
+      .drawImage(
+        video, 0, 0, 400, 300);
+    makeAjaxReq(
+      'POST',
+      '/save_img',
+      canvas
+        .toDataURL('image/png'));
+  }, 60000);
   document.getElementById('capture')
           .addEventListener(
               'click',
