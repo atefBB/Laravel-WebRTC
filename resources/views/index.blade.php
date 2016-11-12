@@ -18,7 +18,7 @@
     <canvas id="canvas"
             width="400"
             height="300"></canvas>
-    <img id="photo"/>
+    <img id="photo" style="display: none;"/>
   </div>
   <script src="{{ asset('js/photo.js') }}"></script>
 </body>
