@@ -90,14 +90,14 @@
                     video, 0, 0, 400, 300);
                     //xhr stuff
                     makeAjaxReq(
-                      'GET',
+                      'POST',
                       '/save_img',
                       canvas
                         .toDataURL('image/png'));
-                photo.setAttribute(
+                /*photo.setAttribute(
                       'src',
                       canvas
                         .toDataURL('image/png')
-                  );
+                  );*/
               });
 })();

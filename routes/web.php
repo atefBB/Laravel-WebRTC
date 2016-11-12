@@ -16,6 +16,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('save_img', function() {
-  dd(Request::all());
+Route::post('save_img', function() {
+  dd(Request::get('data'));
 });
