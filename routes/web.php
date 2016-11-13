@@ -42,32 +42,13 @@ Route::post('save_img', function() {
               $img_save_path,
               base64_decode($captured_image))))
   {
-    return json_encode("Prob while saving image");
+    return json_encode([
+      'status'  => false,
+      'message' => "Prob while saving image"
+    ]);
   }
-  return json_encode('Image saved at: '.$d->toDateTimeString());
-
-      /*if (
-          preg_match(
-              '/data:image\/(gif|jpeg|png);base64,(.*)/i',
-              $captured_image,
-              $matches))
-              {
-          $imageType = $matches[1];
-          $imageData = base64_decode($matches[2]);
-          $image = imagecreatefromstring($imageData);
-          $filename = 'img_'.$d->toDateString().'.png';
-
-          if (
-                imagepng(
-                  $image,
-                  storage_path().'/app/imgs/'. $filename))
-          {
-              echo json_encode(
-                      array('filename' => '/app/imgs/' . $filename));
-          } else {
-              throw new Exceptionecho ('Could not save the file.');
-          }
-      } else {
-          throw new Exceptionecho ('Invalid data URL.');
-      }*/
+  return json_encode([
+    'status'  => true,
+    'message' => 'Image saved at: '.$d->toDateTimeString()
+  ]);
 });

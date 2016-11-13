@@ -23,12 +23,21 @@
       audio: false,
     }, function(stream) {
       // success callback
-      video.src = vendorUrl
-                    .createObjectURL(stream);
+      document.track = stream.getTracks()[0];
+      if(navigator.mozGetUserMedia)
+      {
+          // @info: if it's a mozilla navigator,
+          // use mozilla simplified function to deal with stream
+          video.mozSrcObject = stream;
+      } else {
+        video.src = vendorUrl
+                      .createObjectURL(stream);
+      }
       video.play();
     }, function(err) {
       // An error occured
       // err.code
+      console.log("An error occured: " + err);
     });
   }
 
@@ -106,6 +115,7 @@
     var stop_capture_date = new Date();
     clearInterval(document.setIntervalVar);
     console.log('Capture end at: ', stop_capture_date.toGMTString());
+    document.track.stop();
     video.src = '';
   })
   /*document.getElementById('capture')
