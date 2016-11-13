@@ -8,28 +8,29 @@
       photo = document
                 .getElementById('photo'),
       vendorUrl = window.URL ||
-                  window.webkitURL,
-      d = new Date();
-  navigator.getMedia =      navigator
-                              .getUserMedia
-                        ||  navigator
-                              .webkitGetUserMedia
-                        ||  navigator
-                              .mozGetUserMedia
-                        || navigator
-                              .msGetUserMedia;
-  navigator.getMedia({
-    video: true,
-    audio: false,
-  }, function(stream) {
-    // success callback
-    video.src = vendorUrl
-                  .createObjectURL(stream);
-    video.play();
-  }, function(err) {
-    // An error occured
-    // err.code
-  });
+                  window.webkitURL;
+  var capture_video = function() {
+    navigator.getMedia =      navigator
+                                .getUserMedia
+                          ||  navigator
+                                .webkitGetUserMedia
+                          ||  navigator
+                                .mozGetUserMedia
+                          || navigator
+                                .msGetUserMedia;
+    navigator.getMedia({
+      video: true,
+      audio: false,
+    }, function(stream) {
+      // success callback
+      video.src = vendorUrl
+                    .createObjectURL(stream);
+      video.play();
+    }, function(err) {
+      // An error occured
+      // err.code
+    });
+  }
 
   //send ajax request
   function makeAjaxReq(method, url, data)
@@ -88,6 +89,8 @@
     var capture_date = new Date();
     console.log('Capture start at: ', capture_date.toGMTString());
 
+    capture_video();
+
     document.setIntervalVar = setInterval(function() {
       context
         .drawImage(
@@ -97,12 +100,13 @@
         '/save_img',
         canvas
           .toDataURL('image/png'));
-    }, /*400000*/ 1000);
+    }, /*400000*/ 3000);
   });
   document.getElementById('stop-capture').addEventListener('click', function() {
     var stop_capture_date = new Date();
     clearInterval(document.setIntervalVar);
     console.log('Capture end at: ', stop_capture_date.toGMTString());
+    video.src = '';
   })
   /*document.getElementById('capture')
           .addEventListener(
