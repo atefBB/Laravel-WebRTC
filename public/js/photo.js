@@ -95,6 +95,9 @@
   // attach an action to a button || for testing stuff
   document.getElementById('capture').addEventListener('click', function() {
     // save the captured image after 1200000 seconds (=20 minutes).
+    document.getElementById('stop-capture')
+            .style.pointerEvents = 'auto';
+    this.style.pointerEvents = 'none';
     var capture_date = new Date();
     console.log('Capture start at: ', capture_date.toGMTString());
 
@@ -117,6 +120,8 @@
     console.log('Capture end at: ', stop_capture_date.toGMTString());
     document.track.stop();
     video.src = '';
+    document.getElementById('capture')
+            .style.pointerEvents = 'auto';
   })
   /*document.getElementById('capture')
           .addEventListener(

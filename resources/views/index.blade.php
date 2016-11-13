@@ -16,7 +16,8 @@
       Start
     </a>
     <a href="#" id="stop-capture"
-        class="booth-capture-btn">
+        class="booth-capture-btn"
+        style="pointer-events: none;">
       Stop
     </a>
     <canvas id="canvas"
