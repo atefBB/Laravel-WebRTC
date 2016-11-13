@@ -38,9 +38,10 @@ Route::post('save_img', function() {
                       ' ',
                       '+',
                       $captured_image);
-  dd(file_put_contents(
+  return json_encode($d->now());                    
+  /*dd(file_put_contents(
         $img_save_path,
-        base64_decode($captured_image)));
+        base64_decode($captured_image)));*/
 
       /*if (
           preg_match(

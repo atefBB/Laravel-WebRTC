@@ -8,7 +8,8 @@
       photo = document
                 .getElementById('photo'),
       vendorUrl = window.URL ||
-                  window.webkitURL;
+                  window.webkitURL,
+      d = new Date();
   navigator.getMedia =      navigator
                               .getUserMedia
                         ||  navigator
@@ -65,7 +66,7 @@
      }
 
      httpRequest.onreadystatechange = function() {
-        console.log(httpRequest.responseText);
+        console.log(httpRequest.statusText);
      };
 
      httpRequest.open(method, url, true);
@@ -80,19 +81,29 @@
        httpRequest
         .send('data='+data);
      };
-  // @todo: save/send the captured Image.
-  // save the captured image after 1200000 seconds (=20 minutes).
-  setInterval(function() {
-    context
-      .drawImage(
-        video, 0, 0, 400, 300);
-    makeAjaxReq(
-      'POST',
-      '/save_img',
-      canvas
-        .toDataURL('image/png'));
-  }, 400000);
+
   // attach an action to a button || for testing stuff
+  document.getElementById('capture').addEventListener('click', function() {
+    // save the captured image after 1200000 seconds (=20 minutes).
+    var capture_date = new Date();
+    console.log('Capture start at: ', capture_date.toGMTString());
+
+    document.setIntervalVar = setInterval(function() {
+      context
+        .drawImage(
+          video, 0, 0, 400, 300);
+      makeAjaxReq(
+        'POST',
+        '/save_img',
+        canvas
+          .toDataURL('image/png'));
+    }, /*400000*/ 1000);
+  });
+  document.getElementById('stop-capture').addEventListener('click', function() {
+    var stop_capture_date = new Date();
+    clearInterval(document.setIntervalVar);
+    console.log('Capture end at: ', stop_capture_date.toGMTString());
+  })
   /*document.getElementById('capture')
           .addEventListener(
               'click',
