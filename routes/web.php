@@ -38,10 +38,13 @@ Route::post('save_img', function() {
                       ' ',
                       '+',
                       $captured_image);
-  return json_encode($d->now());                    
-  /*dd(file_put_contents(
-        $img_save_path,
-        base64_decode($captured_image)));*/
+  if(is_bool(file_put_contents(
+              $img_save_path,
+              base64_decode($captured_image))))
+  {
+    return json_encode("Prob while saving image");
+  }
+  return json_encode('Image saved at: '.$d->toDateTimeString());
 
       /*if (
           preg_match(
